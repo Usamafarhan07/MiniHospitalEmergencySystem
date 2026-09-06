@@ -13,6 +13,7 @@ public class VisitLinkedList {
 
     private Node head;
 
+    // ADD
     public void addVisit(Visit visit) {
 
         Node newNode = new Node(visit);
@@ -31,6 +32,51 @@ public class VisitLinkedList {
         current.next = newNode;
     }
 
+    // SEARCH
+    public Visit searchVisit(int visitId) {
+
+        Node current = head;
+
+        while (current != null) {
+
+            if (current.visit.getVisitId() == visitId) {
+                return current.visit;
+            }
+
+            current = current.next;
+        }
+
+        return null;
+    }
+
+    // REMOVE
+    public boolean removeVisit(int visitId) {
+
+        if (head == null) {
+            return false;
+        }
+
+        if (head.visit.getVisitId() == visitId) {
+            head = head.next;
+            return true;
+        }
+
+        Node current = head;
+
+        while (current.next != null) {
+
+            if (current.next.visit.getVisitId() == visitId) {
+                current.next = current.next.next;
+                return true;
+            }
+
+            current = current.next;
+        }
+
+        return false;
+    }
+
+    // DISPLAY
     public void displayVisits() {
 
         if (head == null) {
@@ -39,6 +85,8 @@ public class VisitLinkedList {
         }
 
         Node current = head;
+
+        System.out.println("\n--- Patient Visit History ---");
 
         while (current != null) {
             System.out.println(current.visit);
