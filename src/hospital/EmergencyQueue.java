@@ -14,6 +14,7 @@ public class EmergencyQueue {
     private Node front;
     private Node rear;
 
+    // ENQUEUE
     public void enqueue(Patient patient) {
 
         Node newNode = new Node(patient);
@@ -25,5 +26,45 @@ public class EmergencyQueue {
 
         rear.next = newNode;
         rear = newNode;
+    }
+
+    // DEQUEUE
+    public Patient dequeue() {
+
+        if (front == null) {
+            return null;
+        }
+
+        Patient patient = front.patient;
+
+        front = front.next;
+
+        if (front == null) {
+            rear = null;
+        }
+
+        return patient;
+    }
+
+    // DISPLAY
+    public void display() {
+
+        if (front == null) {
+            System.out.println("Emergency queue is empty.");
+            return;
+        }
+
+        Node current = front;
+
+        System.out.println("\n--- Emergency Waiting Queue ---");
+
+        while (current != null) {
+            System.out.println(current.patient);
+            current = current.next;
+        }
+    }
+
+    public boolean isEmpty() {
+        return front == null;
     }
 }
